@@ -10,6 +10,8 @@ import { TodoModule } from './todo/todo.module';
 import { MaterialModule } from './material.module';
 import { EffectsModule } from '@ngrx/effects';
 import { todoReducer } from './todo/reducers/todo.reducer';
+import { TodoEffectService } from './todo/effects/todo-effect.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,12 @@ import { todoReducer } from './todo/reducers/todo.reducer';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     TodoModule,
     MaterialModule,
     StoreModule.forRoot({ todos: todoReducer }, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([TodoEffectService]),
   ],
   providers: [],
   bootstrap: [AppComponent]
